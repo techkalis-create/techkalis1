@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalishwaran K — techkalis</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@400;600;700;800&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --white: #ffffff; --off: #f9f7f4; --black: #111111;
+  --gray: #555555; --light: #e8e4de;
+  --peach: #f2c4a0; --sage: #b8cdb8; --sky: #aecbd6;
+  --lilac: #cfc2e0; --lemon: #e8e4a0; --coral: #e88f7a;
+  --mint: #a8d4c0; --rose: #e8b4b8;
+}
+body { font-family: 'Mulish', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 3rem; border-bottom: 2px solid var(--black);
+  position: sticky; top: 0; z-index: 200; background: var(--white);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--black); text-decoration: none;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.nav-icon {
+  width: 24px; height: 24px; background: var(--black);
+  display: grid; place-items: center;
+}
+.nav-icon span { color: white; font-size: 0.55rem; font-weight: 900; line-height: 1; }
+.nav-right { display: flex; align-items: center; gap: 2.2rem; }
+.nav-right a {
+  font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--black); text-decoration: none; transition: opacity 0.2s;
+}
+.nav-right a:hover { opacity: 0.5; }
+.nav-admin {
+  padding: 0.45rem 1.1rem; border: 2px solid var(--black);
+  background: transparent; cursor: pointer;
+  font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s;
+}
+.nav-admin:hover { background: var(--black); color: var(--white); }
+
+/* HERO */
+#hero {
+  background: var(--peach); padding: 5rem 3rem 4rem;
+  position: relative; overflow: hidden; min-height: 72vh;
+  display: flex; align-items: flex-end;
+}
+.hero-ghost {
+  position: absolute; top: -2rem; right: -2rem; pointer-events: none;
+  font-family: 'Playfair Display', serif; font-size: clamp(10rem,22vw,20rem);
+  font-weight: 900; color: rgba(0,0,0,0.05); line-height: 1;
+  user-select: none; white-space: nowrap;
+}
+.hero-content { position: relative; z-index: 2; width: 100%; }
+.hero-eyebrow {
+  font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.65;
+  margin-bottom: 1rem;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.8rem, 9vw, 8.5rem);
+  font-weight: 900; line-height: 0.9; letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+.hero-title em { font-style: italic; }
+.hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
+.hero-desc { font-size: 1rem; line-height: 1.75; opacity: 0.72; max-width: 400px; font-weight: 400; }
+.hero-stats { display: flex; gap: 3rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1; }
+.stat-lbl { font-family: 'Syne', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; margin-top: 0.2rem; }
+
+/* ABOUT */
+#about { padding: 5rem 3rem; background: var(--white); }
+.about-h { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,6vw,5rem); font-weight: 900; line-height: 1.05; margin-bottom: 3rem; }
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+.about-bio { font-size: 0.98rem; line-height: 1.9; color: var(--gray); margin-bottom: 1.4rem; font-weight: 400; }
+.about-quote { font-size: 0.9rem; line-height: 1.8; font-style: italic; color: var(--gray); padding-left: 1.4rem; border-left: 2.5px solid var(--black); margin-top: 1.5rem; }
+.tools-lbl { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; margin: 2rem 0 0.9rem; }
+.tools-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tool { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.38rem 0.95rem; border: 2px solid var(--black); cursor: default; transition: all 0.2s; }
+.tool:hover { background: var(--black); color: var(--white); }
+.about-img { background: var(--sage); aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; }
+.about-img-inner { text-align: center; padding: 2rem; }
+.about-initial { font-family: 'Playfair Display', serif; font-size: 8rem; font-weight: 900; color: rgba(0,0,0,0.12); line-height: 1; }
+.about-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1rem; }
+.about-role { font-size: 0.78rem; opacity: 0.55; font-style: italic; margin-top: 0.3rem; }
+
+/* PROJECTS MOSAIC */
+#proj-grid { padding: 4rem 3rem 2rem; }
+.sec-h { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,4rem); font-weight: 900; margin-bottom: 1.8rem; }
+.mosaic { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: 200px 200px; gap: 8px; }
+.mc { position: relative; display: flex; align-items: flex-end; padding: 1.1rem; font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; cursor: default; transition: filter 0.3s; }
+.mc:hover { filter: brightness(0.9); }
+.mc:nth-child(1){ background: var(--sky); grid-column:1; grid-row:1; }
+.mc:nth-child(2){ background: var(--black); color: var(--white); grid-column:2; grid-row:1/3; }
+.mc:nth-child(3){ background: var(--lemon); grid-column:3; grid-row:1; }
+.mc:nth-child(4){ background: var(--coral); grid-column:1; grid-row:2; }
+.mc:nth-child(5){ background: var(--lilac); grid-column:3; grid-row:2; }
+.mc-num { position: absolute; top: 0.8rem; right: 0.8rem; font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; opacity: 0.15; line-height: 1; }
+
+/* CASE STUDIES */
+.case {
+  padding: 5rem 3rem; border-top: 2px solid var(--black);
+}
+.case-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+.case-h { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,4rem); font-weight: 900; line-height: 1.05; }
+.case-btn { padding: 0.58rem 1.5rem; border: 2px solid var(--black); background: var(--white); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.case-btn:hover { background: var(--black); color: var(--white); }
+.case-body { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.case-pt { margin-bottom: 1.8rem; }
+.case-pt-n { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; opacity: 0.2; line-height: 1; margin-bottom: 0.2rem; }
+.case-pt-l { font-family: 'Syne', sans-serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.case-pt-t { font-size: 0.92rem; line-height: 1.8; opacity: 0.7; }
+.case-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.8rem; }
+.case-tag { font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700; padding: 0.28rem 0.75rem; background: rgba(0,0,0,0.1); }
+.case-vis { background: rgba(0,0,0,0.08); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
+.case-vis-inner { text-align: center; padding: 2rem; }
+.case-vis-tag { font-family: 'Syne', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.35; margin-bottom: 0.5rem; }
+.case-vis-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; font-style: italic; opacity: 0.28; }
+
+/* SERVICES */
+#services { padding: 5rem 3rem; background: var(--off); border-top: 2px solid var(--black); }
+.services-hd { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+.services-sub { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; margin-bottom: 0.4rem; }
+.services-tag { font-size: 0.88rem; font-style: italic; color: var(--gray); }
+.svc-list { display: flex; flex-direction: column; max-width: 520px; }
+.svc-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--light); cursor: default; }
+.svc-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.svc-pill { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 800; letter-spacing: 0.05em; padding: 0.42rem 1.2rem; color: var(--white); transition: transform 0.2s; }
+.svc-item:hover .svc-pill { transform: translateX(6px); }
+
+/* CONTACT */
+#contact { padding: 5rem 3rem; background: var(--peach); border-top: 2px solid var(--black); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.contact-big { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4.5vw,3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 2.2rem; }
+.ci-lbl { font-family: 'Syne', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.48; margin-bottom: 0.25rem; }
+.ci-val { font-size: 1rem; font-weight: 700; margin-bottom: 1.3rem; }
+.ci-val a { color: var(--black); text-decoration: none; }
+.ci-val a:hover { text-decoration: underline; }
+.cf { display: flex; flex-direction: column; gap: 1rem; }
+.cf-g label { display: block; font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.38rem; }
+.cf-g input, .cf-g textarea { width: 100%; padding: 0.82rem 1rem; background: var(--white); border: 2px solid var(--black); font-family: 'Mulish', sans-serif; font-size: 0.95rem; color: var(--black); outline: none; }
+.cf-g textarea { resize: vertical; min-height: 110px; }
+.cf-submit { padding: 0.88rem 2.5rem; background: var(--black); color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; align-self: flex-start; transition: background 0.2s; }
+.cf-submit:hover { background: #333; }
+
+/* FOOTER */
+footer { background: var(--black); color: var(--white); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.08em; }
+.footer-copy { font-family: 'Syne', sans-serif; font-size: 0.68rem; opacity: 0.38; letter-spacing: 0.06em; }
+
+/* OVERLAY */
+.ov { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,0.78); backdrop-filter: blur(5px); align-items: center; justify-content: center; }
+.ov.open { display: flex; }
+
+/* LOGIN */
+.login-box { background: var(--white); width: min(92vw, 370px); border: 2px solid var(--black); }
+.login-hd { background: var(--black); padding: 1.8rem 2rem 1.5rem; text-align: center; }
+.login-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.login-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); font-style: italic; }
+.login-sub { font-family: 'Syne', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 0.3rem; }
+.login-bd { padding: 1.8rem; }
+.lf { margin-bottom: 1rem; }
+.lf label { display: block; font-family: 'Syne', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.lf-wrap { position: relative; }
+.lf input { width: 100%; padding: 0.72rem 2.4rem 0.72rem 0.9rem; border: 2px solid var(--black); font-family: 'Mulish', sans-serif; font-size: 0.9rem; outline: none; }
+.tpbtn { position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.9rem; line-height: 1; }
+.lerr { font-size: 0.72rem; color: #c0392b; font-weight: 600; margin-bottom: 0.8rem; opacity: 0; transition: opacity 0.2s; min-height: 1.1rem; }
+.lerr.show { opacity: 1; }
+.lbtn { width: 100%; padding: 0.8rem; background: var(--black); color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; }
+.lbtn:hover { background: #333; }
+.lbtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.lnote { text-align: center; font-family: 'Syne', sans-serif; font-size: 0.58rem; opacity: 0.35; margin-top: 0.8rem; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 40%{transform:translateX(7px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+.shake { animation: shake 0.4s ease; }
+
+/* ADMIN */
+.admin-box { background: var(--white); width: min(96vw,880px); max-height: 90vh; overflow-y: auto; border: 2px solid var(--black); display: flex; flex-direction: column; }
+.adm-hd { padding: 1.4rem 2rem; background: var(--black); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+.adm-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; font-style: italic; color: var(--white); }
+.adm-hd-right { display: flex; gap: 0.7rem; }
+.adm-btn { padding: 0.38rem 0.95rem; border: 1.5px solid rgba(255,255,255,0.3); background: transparent; color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+.adm-btn:hover { border-color: white; background: rgba(255,255,255,0.1); }
+.adm-tabs { display: flex; border-bottom: 2px solid var(--black); background: var(--off); }
+.atab { padding: 0.85rem 1.7rem; font-family: 'Syne', sans-serif; font-size: 0.63rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: none; border: none; cursor: pointer; color: var(--gray); border-bottom: 2.5px solid transparent; transition: all 0.2s; }
+.atab.active { color: var(--black); border-bottom-color: var(--black); }
+.adm-body { padding: 2rem; }
+.apanel { display: none; }
+.apanel.active { display: block; }
+.sgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.4rem; }
+.scard { border: 2px solid var(--black); padding: 1.2rem; }
+.scard-lbl { font-family: 'Syne', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.45; margin-bottom: 0.5rem; }
+.scard input { width: 100%; border: none; outline: none; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; background: transparent; text-align: center; color: var(--black); }
+.toolbar { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+.btnadd { padding: 0.5rem 1.2rem; background: var(--black); color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; }
+.btnadd:hover { background: #333; }
+table { width: 100%; border-collapse: collapse; }
+th { font-family: 'Syne', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); text-align: left; padding: 0.5rem 0.65rem; border-bottom: 2px solid var(--black); }
+td { font-size: 0.82rem; padding: 0.75rem 0.65rem; border-bottom: 1px solid var(--light); vertical-align: top; }
+.tdi { font-style: italic; opacity: 0.58; max-width: 180px; }
+.tdact { display: flex; gap: 0.4rem; }
+.btedit, .btdel { padding: 0.26rem 0.6rem; font-family: 'Syne', sans-serif; font-size: 0.56rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: 1.5px solid; transition: all 0.2s; }
+.btedit { border-color: var(--black); color: var(--black); background: transparent; }
+.btedit:hover { background: var(--black); color: var(--white); }
+.btdel { border-color: #c0392b; color: #c0392b; background: transparent; }
+.btdel:hover { background: #c0392b; color: var(--white); }
+.sok { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; color: #2a6e4a; margin-top: 1rem; opacity: 0; transition: opacity 0.3s; }
+.sok.show { opacity: 1; }
+
+/* FORM MODAL */
+.fmov { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+.fmov.open { display: flex; }
+.fmbox { background: var(--white); width: min(94vw,490px); border: 2px solid var(--black); }
+.fmhd { padding: 1.2rem 1.5rem; border-bottom: 2px solid var(--black); display: flex; justify-content: space-between; align-items: center; background: var(--off); }
+.fmtitle { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; font-style: italic; }
+.fmbody { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+.fmg label { display: block; font-family: 'Syne', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.32rem; }
+.fmg input, .fmg textarea, .fmg select { width: 100%; padding: 0.62rem 0.82rem; border: 2px solid var(--black); font-family: 'Mulish', sans-serif; font-size: 0.88rem; color: var(--black); outline: none; background: var(--white); }
+.fmg textarea { resize: vertical; min-height: 70px; }
+.fmft { padding: 1rem 1.5rem; border-top: 2px solid var(--black); display: flex; justify-content: flex-end; gap: 0.65rem; background: var(--off); }
+.btncancel { padding: 0.52rem 1.2rem; background: transparent; border: 2px solid var(--black); font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+.btncancel:hover { background: var(--black); color: var(--white); }
+.btnsave { padding: 0.52rem 1.2rem; background: var(--black); color: var(--white); border: none; font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+.btnsave:hover { background: #333; }
+.xcbtn { background: none; border: 1.5px solid; padding: 0.2rem 0.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+
+@media(max-width:768px){
+  nav{padding:1rem 1.2rem;}
+  .nav-right a{display:none;}
+  #hero,#about,#proj-grid,.case,#services,#contact{padding:3rem 1.2rem;}
+  .about-grid,.case-body,.contact-grid{grid-template-columns:1fr;gap:2rem;}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,150px);}
+  .mc:nth-child(1){grid-column:1;grid-row:1;}
+  .mc:nth-child(2){grid-column:2;grid-row:1;}
+  .mc:nth-child(3){grid-column:1;grid-row:2;}
+  .mc:nth-child(4){grid-column:2;grid-row:2;}
+  .mc:nth-child(5){grid-column:1/3;grid-row:3;}
+  .hero-stats{gap:1.5rem;}
+  footer{flex-direction:column;text-align:center;}
+  .sgrid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="nav-icon"><span>TK</span></div>
+    techkalis
+  </a>
+  <div class="nav-right">
+    <a href="#about">About</a>
+    <a href="#proj-grid">Work</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <button class="nav-admin" onclick="openAdmin()">Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-ghost">AI</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Prompt Engineer &nbsp;·&nbsp; AI Developer &nbsp;·&nbsp; B.Tech Mechatronics</p>
+    <h1 class="hero-title"><em>Kalish</em>waran K</h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Engineering meets AI. I build intelligent products using Claude, ChatGPT, Cursor, Vercel &amp; GitHub — fast, precise, beautifully engineered.</p>
+      <div class="hero-stats">
+        <div><div class="stat-num" id="hProj">24+</div><div class="stat-lbl">Projects</div></div>
+        <div><div class="stat-num" id="hCli">18+</div><div class="stat-lbl">Clients</div></div>
+        <div><div class="stat-num" id="hYrs">5+</div><div class="stat-lbl">Years</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="about-h">About<br><em>Kalishwaran K</em></h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-bio">Kalishwaran K is a B.Tech Mechatronics Engineering graduate with a deep passion for artificial intelligence and product development. Known online as <strong>techkalis</strong>, he bridges the gap between engineering precision and AI-powered creativity.</p>
+      <p class="about-bio">He is a power user of today's most advanced AI tools — Claude, ChatGPT, Cursor, Vercel and GitHub — applying them daily to design, build and ship real products faster than ever before.</p>
+      <p class="about-quote">Aside from engineering, Kalishwaran finds time to explore emerging AI tools and craft precision prompts that unlock new possibilities for future projects.</p>
+      <p class="tools-lbl">Tools &amp; Stack</p>
+      <div class="tools-wrap">
+        <span class="tool">Claude</span><span class="tool">ChatGPT</span><span class="tool">Cursor</span>
+        <span class="tool">Vercel</span><span class="tool">GitHub</span><span class="tool">Prompt Eng.</span>
+        <span class="tool">React</span><span class="tool">Node.js</span><span class="tool">Python</span><span class="tool">JavaScript</span>
+      </div>
+    </div>
+    <div class="about-img">
+      <div class="about-img-inner">
+        <div class="about-initial">K</div>
+        <div class="about-name">Kalishwaran K</div>
+        <div class="about-role">techkalis · Prompt Engineer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOSAIC -->
+<section id="proj-grid">
+  <h2 class="sec-h">Projects</h2>
+  <div class="mosaic" id="mosaicEl">
+    <div class="mc"><span class="mc-num">01</span><span>AI Prompt System</span></div>
+    <div class="mc"><span class="mc-num">02</span><span>Cursor Web App</span></div>
+    <div class="mc"><span class="mc-num">03</span><span>AI Automation</span></div>
+    <div class="mc"><span class="mc-num">04</span><span>Portfolio Site</span></div>
+    <div class="mc"><span class="mc-num">05</span><span>Prompt Library</span></div>
+  </div>
+</section>
+
+<!-- CASES -->
+<div id="casesEl"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-hd">
+    <div>
+      <p class="services-sub">What I do</p>
+      <h2 class="sec-h" style="margin-bottom:0">Services</h2>
+    </div>
+    <p class="services-tag">Let your brand's vision become a reality.</p>
+  </div>
+  <div class="svc-list">
+    <div class="svc-item"><div class="svc-dot" style="background:#111"></div><div class="svc-pill" style="background:#111">Prompt Engineering</div></div>
+    <div class="svc-item"><div class="svc-dot" style="background:#2a6e4a"></div><div class="svc-pill" style="background:#2a6e4a">AI App Development</div></div>
+    <div class="svc-item"><div class="svc-dot" style="background:#b85a2a"></div><div class="svc-pill" style="background:#b85a2a">Website Development</div></div>
+    <div class="svc-item"><div class="svc-dot" style="background:#1a3a6e"></div><div class="svc-pill" style="background:#1a3a6e">AI Workflow Automation</div></div>
+    <div class="svc-item"><div class="svc-dot" style="background:#6e1a4a"></div><div class="svc-pill" style="background:#6e1a4a">Technical Consulting</div></div>
+    <div class="svc-item"><div class="svc-dot" style="background:#4a4a1a"></div><div class="svc-pill" style="background:#4a4a1a">Integrations &amp; APIs</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="sec-h">Get in Touch</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-big">Let's build something <em>great</em> together.</p>
+      <div><p class="ci-lbl">WhatsApp / Phone</p><p class="ci-val"><a href="https://wa.me/919486625093">+91 94866 25093</a></p></div>
+      <div><p class="ci-lbl">Email</p><p class="ci-val"><a href="mailto:techkalis@gmail.com">techkalis@gmail.com</a></p></div>
+      <div><p class="ci-lbl">Location</p><p class="ci-val">Puducherry, India</p></div>
+      <div><p class="ci-lbl">Availability</p><p class="ci-val">Open to freelance &amp; collaborations</p></div>
+    </div>
+    <form class="cf" onsubmit="handleContact(event)">
+      <div class="cf-g"><label>Your Name</label><input type="text" id="cName" placeholder="Jane Smith" required></div>
+      <div class="cf-g"><label>Email Address</label><input type="email" id="cEmail" placeholder="jane@example.com" required></div>
+      <div class="cf-g"><label>Message</label><textarea id="cMsg" placeholder="Tell me about your project..."></textarea></div>
+      <button type="submit" class="cf-submit">Send Message &#8594;</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">TECHKALIS · KALISHWARAN K</div>
+  <div class="footer-copy">© 2026 All rights reserved · Puducherry, India</div>
+</footer>
+
+<!-- LOGIN OVERLAY -->
+<div class="ov" id="loginOv" onclick="ovClose(event,'loginOv')">
+  <div class="login-box" id="loginBox">
+    <div class="login-hd">
+      <div class="login-icon">🔐</div>
+      <div class="login-title">Admin Access</div>
+      <div class="login-sub">techkalis · restricted</div>
+    </div>
+    <div class="login-bd">
+      <div class="lf"><label>Username</label><div class="lf-wrap"><input type="text" id="lUser" placeholder="Username" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"></div></div>
+      <div class="lf"><label>Password</label><div class="lf-wrap"><input type="password" id="lPass" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"><button class="tpbtn" type="button" id="tpb" onclick="togglePw()">👁</button></div></div>
+      <div class="lerr" id="lerr">⚠ Incorrect credentials</div>
+      <button class="lbtn" id="lbtn" onclick="doLogin()">Sign In →</button>
+      <p class="lnote">Authorised access only · techkalis</p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN OVERLAY -->
+<div class="ov" id="adminOv" onclick="ovClose(event,'adminOv')">
+  <div class="admin-box">
+    <div class="adm-hd">
+      <span class="adm-title">Admin Dashboard</span>
+      <div class="adm-hd-right">
+        <button class="adm-btn" onclick="doLogout()">Logout</button>
+        <button class="adm-btn" onclick="closeAdmin()">✕ Close</button>
+      </div>
+    </div>
+    <div class="adm-tabs">
+      <button class="atab active" onclick="switchTab(event,'tp-stats')">Stats</button>
+      <button class="atab" onclick="switchTab(event,'tp-projects')">Projects</button>
+      <button class="atab" onclick="switchTab(event,'tp-feedback')">Feedback</button>
+    </div>
+    <div class="adm-body">
+      <div class="apanel active" id="tp-stats">
+        <p style="font-size:.85rem;color:var(--gray);margin-bottom:1.3rem;">Update the numbers shown on your hero section.</p>
+        <div class="sgrid">
+          <div class="scard"><p class="scard-lbl">Projects</p><input type="number" id="eProj" min="0"></div>
+          <div class="scard"><p class="scard-lbl">Clients</p><input type="number" id="eCli" min="0"></div>
+          <div class="scard"><p class="scard-lbl">Years</p><input type="number" id="eYrs" min="0"></div>
+        </div>
+        <button class="btnsave" onclick="saveStats()">Save Stats</button>
+        <p class="sok" id="sok">✓ Stats updated!</p>
+      </div>
+      <div class="apanel" id="tp-projects">
+        <div class="toolbar"><button class="btnadd" onclick="openPF()">+ Add Project</button></div>
+        <table><thead><tr><th>Name</th><th>Description</th><th>Tags</th><th>Actions</th></tr></thead><tbody id="ptbody"></tbody></table>
+      </div>
+      <div class="apanel" id="tp-feedback">
+        <div class="toolbar"><button class="btnadd" onclick="openFF()">+ Add Feedback</button></div>
+        <table><thead><tr><th>Author</th><th>Role</th><th>Quote</th><th>Stars</th><th>Actions</th></tr></thead><tbody id="ftbody"></tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT FORM -->
+<div class="fmov" id="pfov">
+  <div class="fmbox">
+    <div class="fmhd"><span class="fmtitle" id="pftitle">Add Project</span><button class="xcbtn" onclick="closePF()">✕</button></div>
+    <div class="fmbody">
+      <div class="fmg"><label>Project Name</label><input type="text" id="pfName" placeholder="e.g. AI Dashboard"></div>
+      <div class="fmg"><label>Description</label><textarea id="pfDesc" placeholder="Brief description..."></textarea></div>
+      <div class="fmg"><label>Background (01)</label><textarea id="pfBg" placeholder="Background details..."></textarea></div>
+      <div class="fmg"><label>Solution (02)</label><textarea id="pfSol" placeholder="Solution details..."></textarea></div>
+      <div class="fmg"><label>Tags (comma-separated)</label><input type="text" id="pfTags" placeholder="Claude, React, Vercel"></div>
+    </div>
+    <div class="fmft"><button class="btncancel" onclick="closePF()">Cancel</button><button class="btnsave" onclick="saveProj()">Save</button></div>
+  </div>
+</div>
+
+<!-- FEEDBACK FORM -->
+<div class="fmov" id="ffov">
+  <div class="fmbox">
+    <div class="fmhd"><span class="fmtitle" id="fftitle">Add Feedback</span><button class="xcbtn" onclick="closeFF()">✕</button></div>
+    <div class="fmbody">
+      <div class="fmg"><label>Client Name</label><input type="text" id="ffAuthor" placeholder="e.g. Priya Nair"></div>
+      <div class="fmg"><label>Role / Company</label><input type="text" id="ffRole" placeholder="e.g. CEO, TechCorp"></div>
+      <div class="fmg"><label>Testimonial</label><textarea id="ffText" placeholder="What they said..."></textarea></div>
+      <div class="fmg"><label>Stars</label><select id="ffStars"><option value="5">★★★★★ (5)</option><option value="4">★★★★☆ (4)</option><option value="3">★★★☆☆ (3)</option></select></div>
+    </div>
+    <div class="fmft"><button class="btncancel" onclick="closeFF()">Cancel</button><button class="btnsave" onclick="saveFb()">Save</button></div>
+  </div>
+</div>
+
+<script>
+var D = {
+  loggedIn: false,
+  stats: {projects:24, clients:18, years:5},
+  projects: [
+    {id:1,name:'AI Prompt System',desc:'Reusable prompt engineering framework for Claude and ChatGPT.',bg:'Built a structured library of prompts to maximise output quality across AI platforms.',sol:'Delivered a modular prompt system with templates, variables and quality scoring.',tags:['Claude','ChatGPT','Prompt Eng.']},
+    {id:2,name:'Cursor Web App',desc:'Full-stack web app built with Cursor IDE, deployed on Vercel with GitHub CI/CD.',bg:'Client needed a fast, modern web application shipped with minimal overhead.',sol:'Used Cursor for AI-assisted coding and Vercel for instant deployments with GitHub Actions.',tags:['Cursor','React','Vercel','GitHub']},
+    {id:3,name:'AI Workflow Automation',desc:'Automated repetitive engineering tasks using AI agents and custom prompt chains.',bg:'Manual processes were slowing down delivery cycles and consuming valuable time.',sol:'Built AI-driven automation pipelines that reduced manual effort by over 60%.',tags:['Claude','Python','Automation']},
+    {id:4,name:'Mechatronics AI Dashboard',desc:'Data dashboard combining sensor data with AI-powered anomaly detection.',bg:'Needed real-time view of mechatronics system health with predictive alerts.',sol:'Integrated sensor feeds with an AI model to detect anomalies in a live dashboard.',tags:['Python','React','ChatGPT','Vercel']},
+    {id:5,name:'Prompt Library',desc:'Curated library of high-performance prompts for developers and creators.',bg:'No single organised resource existed for tested, production-grade prompts.',sol:'Launched a categorised GitHub library with version-controlled prompts and examples.',tags:['Claude','ChatGPT','GitHub']},
+    {id:6,name:'Portfolio Website',desc:'Personal portfolio with admin CRUD panel built with AI-assisted tools.',bg:'Needed a personal site that showcased projects and accepted client feedback.',sol:'Built a custom HTML/CSS/JS site with admin panel, login, and WhatsApp contact.',tags:['HTML','CSS','JavaScript','Cursor']}
+  ],
+  feedbacks: [
+    {id:1,author:'Priya Nair',role:'Founder, PixelLabs',text:'Kalishwaran delivered our platform ahead of schedule with impeccable quality.',stars:5},
+    {id:2,author:'Marco Ferreira',role:'CTO, DataFlow Inc',text:'The architectural decisions were outstanding. Our system handles 10x the load.',stars:5},
+    {id:3,author:'Ananya Krishnan',role:'Product Manager, Nourish',text:'Professional, communicative, technically excellent. Exactly as envisioned.',stars:5}
+  ]
+};
+var epId=null, efId=null;
+var AU='techkalis', AP='kalis@2026';
+var CC=['var(--sky)','var(--lilac)','var(--mint)','var(--lemon)','var(--rose)','var(--peach)'];
+
+function renderStats(){
+  document.getElementById('hProj').textContent=D.stats.projects+'+';
+  document.getElementById('hCli').textContent=D.stats.clients+'+';
+  document.getElementById('hYrs').textContent=D.stats.years+'+';
+  document.getElementById('eProj').value=D.stats.projects;
+  document.getElementById('eCli').value=D.stats.clients;
+  document.getElementById('eYrs').value=D.stats.years;
+}
+
+function renderCases(){
+  document.getElementById('casesEl').innerHTML=D.projects.map(function(p,i){
+    return '<div class="case" style="background:'+CC[i%CC.length]+'">'
+      +'<div class="case-top"><h3 class="case-h">'+p.name+'</h3><button class="case-btn">View Project</button></div>'
+      +'<div class="case-body">'
+        +'<div>'
+          +'<div class="case-pt"><div class="case-pt-n">01</div><div class="case-pt-l">Background</div><p class="case-pt-t">'+p.bg+'</p></div>'
+          +'<div class="case-pt"><div class="case-pt-n">02</div><div class="case-pt-l">Solution</div><p class="case-pt-t">'+p.sol+'</p></div>'
+          +'<div class="case-tags">'+p.tags.map(function(t){return'<span class="case-tag">'+t+'</span>';}).join('')+'</div>'
+        +'</div>'
+        +'<div class="case-vis"><div class="case-vis-inner"><p class="case-vis-tag">Project</p><p class="case-vis-name">'+p.name+'</p></div></div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+  var spans=document.querySelectorAll('.mc > span:last-child');
+  D.projects.slice(0,5).forEach(function(p,i){if(spans[i])spans[i].textContent=p.name;});
+  var pb=document.getElementById('ptbody');
+  if(pb) pb.innerHTML=D.projects.map(function(p){
+    return '<tr><td><strong>'+p.name+'</strong></td><td class="tdi">'+p.desc.substring(0,50)+'…</td><td>'+p.tags.join(', ')+'</td>'
+      +'<td><div class="tdact"><button class="btedit" onclick="editProj('+p.id+')">Edit</button><button class="btdel" onclick="delProj('+p.id+')">Del</button></div></td></tr>';
+  }).join('');
+}
+
+function renderFb(){
+  var fb=document.getElementById('ftbody');
+  if(!fb)return;
+  fb.innerHTML=D.feedbacks.map(function(f){
+    return '<tr><td><strong>'+f.author+'</strong></td><td>'+f.role+'</td><td class="tdi">'+f.text.substring(0,50)+'…</td><td>'+'★'.repeat(f.stars)+'</td>'
+      +'<td><div class="tdact"><button class="btedit" onclick="editFb('+f.id+')">Edit</button><button class="btdel" onclick="delFb('+f.id+')">Del</button></div></td></tr>';
+  }).join('');
+}
+
+function openAdmin(){
+  if(D.loggedIn){showAdmin();}
+  else{
+    document.getElementById('lUser').value='';
+    document.getElementById('lPass').value='';
+    document.getElementById('lerr').classList.remove('show');
+    document.getElementById('loginOv').classList.add('open');
+    setTimeout(function(){document.getElementById('lUser').focus();},100);
+  }
+}
+function doLogin(){
+  var u=document.getElementById('lUser').value.trim();
+  var p=document.getElementById('lPass').value;
+  var btn=document.getElementById('lbtn');
+  btn.disabled=true;btn.textContent='Verifying…';
+  setTimeout(function(){
+    btn.disabled=false;btn.textContent='Sign In →';
+    if(u===AU&&p===AP){
+      D.loggedIn=true;
+      document.getElementById('loginOv').classList.remove('open');
+      showAdmin();
+    }else{
+      document.getElementById('lerr').classList.add('show');
+      var box=document.getElementById('loginBox');
+      box.classList.add('shake');
+      setTimeout(function(){box.classList.remove('shake');},450);
+      document.getElementById('lPass').value='';
+      document.getElementById('lPass').focus();
+    }
+  },600);
+}
+function togglePw(){
+  var i=document.getElementById('lPass'),b=document.getElementById('tpb');
+  i.type=i.type==='password'?'text':'password';
+  b.textContent=i.type==='password'?'👁':'🙈';
+}
+function showAdmin(){
+  document.getElementById('adminOv').classList.add('open');
+  renderCases();renderFb();
+}
+function closeAdmin(){document.getElementById('adminOv').classList.remove('open');}
+function doLogout(){
+  D.loggedIn=false;closeAdmin();
+  var b=document.querySelector('.nav-admin');
+  b.textContent='Logged out';b.style.borderColor='#c0392b';b.style.color='#c0392b';
+  setTimeout(function(){b.textContent='Admin';b.style.borderColor='';b.style.color='';},2000);
+}
+function ovClose(e,id){if(e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
+
+function switchTab(e,id){
+  document.querySelectorAll('.atab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.apanel').forEach(function(p){p.classList.remove('active');});
+  e.target.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function saveStats(){
+  D.stats.projects=parseInt(document.getElementById('eProj').value)||0;
+  D.stats.clients=parseInt(document.getElementById('eCli').value)||0;
+  D.stats.years=parseInt(document.getElementById('eYrs').value)||0;
+  renderStats();
+  var ok=document.getElementById('sok');ok.classList.add('show');
+  setTimeout(function(){ok.classList.remove('show');},2500);
+}
+
+function openPF(id){
+  epId=id||null;
+  document.getElementById('pftitle').textContent=id?'Edit Project':'Add Project';
+  if(id){var p=D.projects.find(function(x){return x.id===id;});document.getElementById('pfName').value=p.name;document.getElementById('pfDesc').value=p.desc;document.getElementById('pfBg').value=p.bg;document.getElementById('pfSol').value=p.sol;document.getElementById('pfTags').value=p.tags.join(', ');}
+  else{['pfName','pfDesc','pfBg','pfSol','pfTags'].forEach(function(id){document.getElementById(id).value='';});}
+  document.getElementById('pfov').classList.add('open');
+}
+function closePF(){document.getElementById('pfov').classList.remove('open');}
+function editProj(id){openPF(id);}
+function delProj(id){if(confirm('Delete this project?')){D.projects=D.projects.filter(function(p){return p.id!==id;});renderCases();}}
+function saveProj(){
+  var n=document.getElementById('pfName').value.trim();
+  if(!n){alert('Name required.');return;}
+  var obj={id:epId||Date.now(),name:n,desc:document.getElementById('pfDesc').value.trim(),bg:document.getElementById('pfBg').value.trim(),sol:document.getElementById('pfSol').value.trim(),tags:document.getElementById('pfTags').value.split(',').map(function(t){return t.trim();}).filter(Boolean)};
+  if(epId){var idx=D.projects.findIndex(function(x){return x.id===epId;});D.projects[idx]=obj;}
+  else{D.projects.push(obj);}
+  renderCases();closePF();
+}
+
+function openFF(id){
+  efId=id||null;
+  document.getElementById('fftitle').textContent=id?'Edit Feedback':'Add Feedback';
+  if(id){var f=D.feedbacks.find(function(x){return x.id===id;});document.getElementById('ffAuthor').value=f.author;document.getElementById('ffRole').value=f.role;document.getElementById('ffText').value=f.text;document.getElementById('ffStars').value=f.stars;}
+  else{['ffAuthor','ffRole','ffText'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('ffStars').value='5';}
+  document.getElementById('ffov').classList.add('open');
+}
+function closeFF(){document.getElementById('ffov').classList.remove('open');}
+function editFb(id){openFF(id);}
+function delFb(id){if(confirm('Delete this feedback?')){D.feedbacks=D.feedbacks.filter(function(f){return f.id!==id;});renderFb();}}
+function saveFb(){
+  var a=document.getElementById('ffAuthor').value.trim(),t=document.getElementById('ffText').value.trim();
+  if(!a||!t){alert('Author and testimonial required.');return;}
+  var obj={id:efId||Date.now(),author:a,role:document.getElementById('ffRole').value.trim(),text:t,stars:parseInt(document.getElementById('ffStars').value)};
+  if(efId){var idx=D.feedbacks.findIndex(function(x){return x.id===efId;});D.feedbacks[idx]=obj;}
+  else{D.feedbacks.push(obj);}
+  renderFb();closeFF();
+}
+
+function handleContact(e){
+  e.preventDefault();
+  var n=document.getElementById('cName').value.trim(),em=document.getElementById('cEmail').value.trim(),m=document.getElementById('cMsg').value.trim();
+  window.open('https://wa.me/919486625093?text='+encodeURIComponent('Hi Kalishwaran! 👋\n\nName: '+n+'\nEmail: '+em+'\n\nMessage:\n'+m),'_blank');
+  window.open('mailto:techkalis@gmail.com?subject=Enquiry from '+n+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\nMessage:\n'+m),'_blank');
+  var b=e.target.querySelector('.cf-submit');
+  b.textContent='Sent via WhatsApp ✓';b.style.background='#2a6e4a';
+  e.target.reset();
+  setTimeout(function(){b.textContent='Send Message →';b.style.background='';},4000);
+}
+
+renderStats();
+renderCases();
+</script>
+</body>
+</html>
